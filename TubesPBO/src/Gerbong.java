@@ -3,15 +3,17 @@ public class Gerbong {
 	private String idGerbong;
 	private int jumlahKursi;
 	private int tipeGerbong;
-	private boolean statusGerbong;//status gerbong siap atau tidak
+	private boolean statusGerbong;//status sedang digunakan atau tidak
 
 	//constructor
 	public Gerbong(int quantity, String id, int type){
-        jumlahKursi = quantity;
-        idGerbong = id;
-		tipeGerbong = type;
+            jumlahKursi = quantity;
+            idGerbong = id;
+            tipeGerbong = type;
+            statusGerbong = false;
         }
-    
+        public Gerbong() {}
+        
 	//Setter
 	public void setStatusGerbong(boolean status){
 		statusGerbong = status;

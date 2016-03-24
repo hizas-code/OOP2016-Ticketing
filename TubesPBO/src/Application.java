@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 
-public class Admin {
-    private ArrayList<Gerbong> daftarGerbong = new ArrayList<>();
-    private ArrayList<Kereta> daftarKereta = new ArrayList<>();
-    private ArrayList<Rute> daftarRute = new ArrayList<>();
-    private ArrayList<Stasiun> daftarStasiun = new ArrayList<>();
-    private ArrayList<Tiket> daftarTiket = new ArrayList<>();
+public class Application {
+    
+    ArrayList<Gerbong> daftarGerbong = new ArrayList<>();
+    ArrayList<Kereta> daftarKereta = new ArrayList<>();
+    ArrayList<Rute> daftarRute = new ArrayList<>();
+    ArrayList<Stasiun> daftarStasiun = new ArrayList<>();
+    ArrayList<Tiket> daftarTiket = new ArrayList<>();
     
     public Gerbong getGerbong(String id)
     {
@@ -53,7 +54,7 @@ public class Admin {
         return null;
     }
     
-    public void addGerbong(Gerbong gerbong) { daftarGerbong.add(gerbong); }
+    public void addGerbong(Gerbong gerbong) { daftarGerbong.add(gerbong ); }
     public void addKereta(Kereta kereta) { daftarKereta.add(kereta); }
     public void addRute(Rute rute) { daftarRute.add(rute); }
     public void addStasiun(Stasiun stasiun) { daftarStasiun.add(stasiun); }

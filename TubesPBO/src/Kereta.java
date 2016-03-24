@@ -48,6 +48,7 @@ public class Kereta {
         for(int i = 0; i < kapasitasGerbong; i++) {
             if(daftarGerbong[i] == null) {
                 daftarGerbong[i] = gerbong;
+                daftarGerbong[i].setStatusGerbong(true);
 		success = true;
                 break;
             }
@@ -61,6 +62,7 @@ public class Kereta {
         for(int i = 0; i < kapasitasGerbong; i++){
             if(daftarGerbong[i].getIdGerbong().equals(id)){
                 daftarGerbong[i] = null;
+                daftarGerbong[i].setStatusGerbong(false);
 		success = true;
 		break;
             }

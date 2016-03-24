@@ -22,6 +22,7 @@ public class Tiket
 		keretaUse = kereta;
 		jadwal = jam;
 	}
+        public Tiket() {}
 	
 	//Getter
 	public String getIdTiket() 
