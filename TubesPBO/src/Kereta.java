@@ -1,30 +1,72 @@
-public class Kereta {
-    //Atribut
+import java.util.*;
+import java.io.*;
+
+public class Kereta implements Serializable {
+
     private String idKereta;
     private String namaKereta;
-    private Gerbong[] daftarGerbong;
+    private ArrayList<Gerbong> daftarGerbong;
     private int kapasitasGerbong;
-    private int jumlahGerbong = 0;
+    private boolean status;
     
-    //Constructor
     public Kereta(String id, String nama, int maxGerbong){
 	idKereta = id;
 	namaKereta = nama;
 	kapasitasGerbong = maxGerbong;
-	daftarGerbong = new Gerbong[maxGerbong];
+	daftarGerbong = new ArrayList<>(maxGerbong);
+        status = false;
+    }
+    public Kereta(){};
+    
+    public void setIdKereta(String id) {
+        idKereta = id; 
+    }
+    public void setNamaKereta(String nama) {
+        namaKereta = nama; 
+    }
+    public void setStatus(boolean stat){
+        status = stat;
+    }
+    public void resetStatusGerbong(){
+        for(Gerbong g : daftarGerbong) {
+            g.setStatus(false);
+        }
+    }
+    public boolean addGerbong(Gerbong gerbong) { 
+        if((daftarGerbong.size() < kapasitasGerbong) && !gerbong.getStatus()) {
+            daftarGerbong.add(gerbong);
+            gerbong.setStatus(true);
+            return true;
+        }
+        else return false;
+    }
+    public boolean removeGerbongByID(String id){
+        for(Gerbong g : daftarGerbong){
+            if(g.getIdGerbong().equals(id)) {
+                daftarGerbong.remove(g);
+                g.setStatus(false);
+                return true;
+            }
+        }
+        return false;
+    }
+    public void setKapasitasGerbong(int x) {
+        kapasitasGerbong = x;
     }
     
-    //Getter
     public String getIdKereta() { 
-	return idKereta; 
+	return idKereta;
     }
     public String getNamaKereta() { 
 	return namaKereta; 
     }
-    public Gerbong getGerbong(String id) { 
-	for(int i = 0; i < kapasitasGerbong; i++){
-            if(daftarGerbong[i].getIdGerbong().equals(id)){
-                return daftarGerbong[i];
+    public ArrayList<Gerbong> getDaftarGerbong() {
+        return daftarGerbong;
+    }
+    public Gerbong getGerbongByID(String id) { 
+	for(Gerbong g : daftarGerbong){
+            if(g.getIdGerbong().equals(id)){
+                return g;
             }	
 	}
 	return null;
@@ -33,42 +75,9 @@ public class Kereta {
         return kapasitasGerbong; 
     }	
     public int getJumlahGerbong() { 
-	return jumlahGerbong;
+	return daftarGerbong.size();
     }
-    
-    //Setter
-    public void setIdKereta(String id) {
-        idKereta = id; 
-    }
-    public void setNamaKereta(String nama) {
-        namaKereta = nama; 
-    }	
-    public void addGerbong(Gerbong gerbong) { 
-        boolean success = false;
-        for(int i = 0; i < kapasitasGerbong; i++) {
-            if(daftarGerbong[i] == null) {
-                daftarGerbong[i] = gerbong;
-                daftarGerbong[i].setStatusGerbong(true);
-		success = true;
-                break;
-            }
-	}
-	if(!success){ 
-            System.out.println("Failed addGerbong!");
-	} else jumlahGerbong++;
-    }
-    public void removeGerbong(String id){
-        boolean success = false;
-        for(int i = 0; i < kapasitasGerbong; i++){
-            if(daftarGerbong[i].getIdGerbong().equals(id)){
-                daftarGerbong[i] = null;
-                daftarGerbong[i].setStatusGerbong(false);
-		success = true;
-		break;
-            }
-	}
-	if(!success){ 
-            System.out.println("ID not found!");
-	} else jumlahGerbong--;
+    public boolean getStatus(){
+        return status;
     }
 }
