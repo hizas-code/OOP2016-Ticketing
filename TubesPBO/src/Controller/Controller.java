@@ -18,11 +18,13 @@ public class Controller extends MouseAdapter implements ActionListener {
     private PanelContainer view;
     private String currentView;
     private JPanel mainPanel;
+    
     private Gerbong gerbong = null;
     private Gerbong gerbongRelease = null;
     private Gerbong gerbongAttach = null;
     private Kereta kereta = null;
     private Stasiun stasiun = null;
+    private String stasiunChoosed = null;
     private Rute rute = null;
     private Tiket tiket = null;
     
@@ -45,7 +47,7 @@ public class Controller extends MouseAdapter implements ActionListener {
     public Controller(Application model){
         this.model = model;
         this.view = new PanelContainer();
-        view.getContentPane().setBackground(Color.decode("#333333"));
+        view.getContentPane().setBackground(Color.decode("#ffffff"));
         
         menuGerbong = new MenuGerbong();        //Gerbong
         menuAddGerbong = new MenuAddGerbong();
@@ -79,7 +81,11 @@ public class Controller extends MouseAdapter implements ActionListener {
         menuGerbong.addAdapter(this);
         menuKereta.addAdapter(this);
         menuStasiun.addAdapter(this);
+        menuRute.addAdapter(this);
+        menuAddRute.addAdapter(this);
         menuPasangGerbong.addAdapter(this);
+        menuTiket.addAdapter(this);
+        menuAddTiket.addAdapter(this);
         
         mainPanel = view.getMainPanel();
         mainPanel.add(menuGerbong,"menuGerbong");           //Gerbong  
@@ -133,10 +139,14 @@ public class Controller extends MouseAdapter implements ActionListener {
                 view.getCardLayout().show(mainPanel, currentView);
             }
             if(source.equals(view.getBtnRute())){
+                rute = null;
+                menuRute.setListRute(model.getRuteList());
                 currentView = "menuRute";
                 view.getCardLayout().show(mainPanel, currentView);
             }
             if(source.equals(view.getBtnTiket())){
+                tiket = null;
+                menuTiket.setListTiket(model.getTiketList());
                 currentView = "menuTiket";
                 view.getCardLayout().show(mainPanel, currentView);
             }
@@ -221,6 +231,7 @@ public class Controller extends MouseAdapter implements ActionListener {
         }
         if(currentView.equals("menuRute")){
             if(source.equals(menuRute.getBtnAddRute())){
+                menuAddRute.setListStasiun(model.getStasiunList());
                 currentView = "menuAddRute";
                 view.getCardLayout().show(mainPanel, currentView);
             }
@@ -231,16 +242,27 @@ public class Controller extends MouseAdapter implements ActionListener {
                 view.getCardLayout().show(mainPanel, currentView);
             }
             if(source.equals(menuTiket.getBtnDelTiket())){
-                currentView = "menuDelTiket";
-                view.getCardLayout().show(mainPanel, currentView);
+                if(tiket == null){
+                    JOptionPane.showMessageDialog(menuTiket, "Pilih tiket yang ingin dihapus!");
+                }
+                else {
+                    int answer = JOptionPane.showConfirmDialog(menuGerbong, "Yakin Ingin menghapus Tiket dengan ID " + tiket.getTiketId() + " ?");
+                    if(answer == 0){
+                        model.getDaftarTiket().remove(tiket);
+                        menuTiket.setListTiket(model.getTiketList());
+                        tiket = null;
+                        menuTiket.setInfoTiket("");
+                    }
+                }
             }
             if(source.equals(menuTiket.getBtnEditTiket())){
-                currentView = "menuEditTiket";
-                view.getCardLayout().show(mainPanel, currentView);
-            }
-            if(source.equals(menuTiket.getBtnViewTiket())){
-                currentView = "menuViewTiket";
-                view.getCardLayout().show(mainPanel, currentView);
+                if(tiket == null){
+                    JOptionPane.showMessageDialog(menuTiket, "Pilih tiket yang ingin diedit!");
+                }
+                else {
+                    currentView = "menuEditTiket";
+                    view.getCardLayout().show(mainPanel, currentView);
+                }
             }
         }
         //Sub-Menu
@@ -407,6 +429,83 @@ public class Controller extends MouseAdapter implements ActionListener {
                 view.getCardLayout().show(mainPanel,currentView);
             }
         }
+        if(currentView.equals("menuAddStasiun")){
+            if(source.equals(menuAddStasiun.getBtnAdd())){
+                int tryAdd = model.tryStasiun(menuAddStasiun.getStasiunCity());
+                if(tryAdd == 1){
+                    String id = model.generateIDStasiun(menuAddStasiun.getStasiunCity());   
+                    int answer = JOptionPane.showConfirmDialog(menuAddStasiun,"Tambah Stasiun dengan ID : " + id + " ?" );
+                    if(answer == 0){
+                        model.addStasiun(new Stasiun(menuAddStasiun.getStasiunName(),id,menuAddStasiun.getStasiunCity()));
+                        menuStasiun.setListStasiun(model.getStasiunList());
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(menuAddStasiun, "Panjang nama kota harus lebih dari 3 Huruf!");
+                }
+            }
+            if(source.equals(menuAddStasiun.getBtnBack())){
+                menuAddStasiun.resetText();
+                currentView = "menuStasiun";
+                view.getCardLayout().show(mainPanel, currentView);
+            }
+        }
+        if(currentView.equals("menuAddRute")){
+            if(source.equals(menuAddRute.getBtnBack())){
+                menuAddRute.resetText();
+                currentView = "menuRute";
+                view.getCardLayout().show(mainPanel, currentView);
+            }
+            if(source.equals(menuAddRute.getBtnCancel())){
+                menuAddRute.resetText();
+            }
+            if(source.equals(menuAddRute.getBtnChoose1())){
+                menuAddRute.setStasiunAwal(menuAddRute.getSelectedStasiun());
+            }
+            if(source.equals(menuAddRute.getBtnChoose2())){
+                menuAddRute.setStasiunAkhir(menuAddRute.getSelectedStasiun());
+            }
+            if(source.equals(menuAddRute.getBtnAdd())){
+                if(menuAddRute.getStasiunAwal().equals("") || menuAddRute.getStasiunAkhir().equals("")){
+                    JOptionPane.showMessageDialog(menuAddRute, "Pilih Stasiun terlebih dahulu!");
+                }
+                else if(menuAddRute.getStasiunAwal().equals(menuAddRute.getStasiunAkhir())){
+                    JOptionPane.showMessageDialog(menuAddRute, "Stasiun awal dan akhir harus berbeda!");
+                }
+                else if (menuAddRute.getJarak() == 0) {
+                    JOptionPane.showMessageDialog(menuAddRute, "Jarak tidak boleh 0!");
+                }   
+                else {
+                    Stasiun awal = model.getStasiunByID(menuAddRute.getStasiunAwal());
+                    Stasiun akhir = model.getStasiunByID(menuAddRute.getStasiunAkhir());
+                    String id = model.generateIDRute(awal,akhir);
+                    int answer = JOptionPane.showConfirmDialog(menuAddRute,"Tambahkan Rute dengan ID : " + id + " ?");
+                    if(answer == 0){
+                        model.addRute(new Rute(id,awal,akhir,menuAddRute.getJarak()));
+                        menuRute.setListRute(model.getRuteList());
+                    }
+                }
+            }
+        }
+        if(currentView.equals("menuAddTiket")){
+            if(source.equals(menuAddTiket.getBtnAdd())){
+                if(menuAddTiket.getHarga() == 0){
+                    JOptionPane.showMessageDialog(menuAddTiket,"Tentukan harga terlebih dahulu!");
+                }
+                else if(rute == null || kereta == null){
+                    JOptionPane.showMessageDialog(menuAddTiket,"Tentukan kereta dan rute yang digunakan!");
+                }
+                else {
+                    
+                }
+            }
+            if(source.equals(menuAddTiket.getBtnBack())){
+                
+            }
+        }
+        if(currentView.equals("menuEditTiket")){
+            
+        }
     }
     
     @Override
@@ -431,6 +530,37 @@ public class Controller extends MouseAdapter implements ActionListener {
             String idGerbong = menuPasangGerbong.getSelectedGerbongUsed();
             gerbongRelease = model.getGerbongByID(idGerbong);
             menuPasangGerbong.setInfoGerbong(gerbongRelease.toString());
+        }
+        if(source.equals(menuStasiun.getListStasiun())){
+            String idStasiun = menuStasiun.getSelectedStasiun();
+            stasiun = model.getStasiunByID(idStasiun);
+            menuStasiun.setInfoStasiun(stasiun.toString());
+        }
+        if(source.equals(menuRute.getListRute())){
+            System.out.println("asd");
+            String idRute = menuRute.getSelectedRute();
+            rute = model.getRuteByID(idRute);
+            menuRute.setInfoRute(rute.toString());
+        }
+        if(source.equals(menuAddRute.getListStasiun())){
+            String idStasiun = menuAddRute.getSelectedStasiun();
+            stasiun = model.getStasiunByID(idStasiun);
+            menuAddRute.setInfoStasiun(stasiun.toString());
+        }
+        if(source.equals(menuTiket.getListTiket())){
+            String idTiket = menuTiket.getSelectedTiket();
+            tiket = model.getTiketByID(idTiket);
+            menuTiket.setInfoTiket(tiket.toString());
+        }
+        if(source.equals(menuAddTiket.getListKereta())){
+            String idKereta = menuAddTiket.getSelectedKereta();
+            kereta = model.getKeretaByID(idKereta);
+            menuAddTiket.setInfoKereta(kereta.toString());
+        }
+        if(source.equals(menuAddTiket.getListRute())){
+            String idRute = menuAddTiket.getSelectedRute();
+            rute = model.getRuteByID(idRute);
+            menuAddTiket.setInfoRute(rute.toString());
         }
     }
 }

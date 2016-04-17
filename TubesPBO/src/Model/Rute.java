@@ -42,4 +42,10 @@ public class Rute implements Serializable {
     public double getDistance() { 
         return distance; 
     }
+    public String toString(){
+        return "ID Rute         : " + ruteId + "\n" +
+               "Keberangkatan   : " + departure.getCity() + "\n" +
+               "Tujuan          : " + destination.getCity() + "\n" +
+               "Jarak           : " + distance + " KM";
+    }
 }

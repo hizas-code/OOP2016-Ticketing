@@ -137,6 +137,10 @@ public class Application implements Serializable{
         }
         return 1;
     }
+    public int tryStasiun(String kota){
+        if(kota.length() < 3) return -1;
+        else return 1;
+    }
     
     public ArrayList<Kereta> getDaftarKereta() { return daftarKereta; }
     public ArrayList<Gerbong> getDaftarGerbong() { return daftarGerbong; }
@@ -254,5 +258,21 @@ public class Application implements Serializable{
                 idStasiun.add(s.getStasiunId());
         }
         return (String[]) idStasiun.toArray(new String[0]);
+    }
+    public String[] getRuteList(){
+        ArrayList<String> idRute = new ArrayList<>();
+        if(!daftarRute.isEmpty()){
+            for(Rute r : daftarRute)
+                idRute.add(r.getRuteId());
+        }
+        return (String[]) idRute.toArray(new String[0]);
+    }
+    public String[] getTiketList(){
+        ArrayList<String> idTiket = new ArrayList<>();
+        if(!daftarTiket.isEmpty()){
+            for(Tiket t : daftarTiket)
+                idTiket.add(t.getTiketId());
+        }
+        return (String[]) idTiket.toArray(new String[0]);
     }
 }

@@ -22,7 +22,8 @@ public class MenuStasiun extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         infoStasiun = new javax.swing.JTextArea();
 
-        btnAddStasiun.setText("TAMBAH STASIUN");
+        btnAddStasiun.setBackground(new java.awt.Color(111, 168, 220));
+        btnAddStasiun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fix button/tambahstasiun.png"))); // NOI18N
 
         listStasiun.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -44,9 +45,7 @@ public class MenuStasiun extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAddStasiun)
-                        .addGap(119, 119, 119)))
+                    .addComponent(btnAddStasiun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -58,7 +57,7 @@ public class MenuStasiun extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(btnAddStasiun)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -85,5 +84,11 @@ public class MenuStasiun extends javax.swing.JPanel {
     }
     public void setListStasiun(String [] stasiunList){
         listStasiun.setListData(stasiunList);
+    }
+    public String getSelectedStasiun(){
+        return listStasiun.getSelectedValue();
+    }
+    public void setInfoStasiun(String s){
+        infoStasiun.setText(s);
     }
 }

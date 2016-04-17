@@ -36,13 +36,13 @@ public class MenuKereta extends javax.swing.JPanel {
         infoKereta = new javax.swing.JTextArea();
         btnAttachGerbong = new javax.swing.JButton();
 
-        btnAddKereta.setText("TAMBAH KERETA");
+        btnAddKereta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fix button/tambahkereta.png"))); // NOI18N
 
-        btnDelKereta.setText("HAPUS KERETA");
+        btnDelKereta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fix button/hapuskereta.png"))); // NOI18N
         btnDelKereta.setMaximumSize(new java.awt.Dimension(115, 23));
         btnDelKereta.setPreferredSize(new java.awt.Dimension(115, 23));
 
-        btnEditKereta.setText("EDIT KERETA");
+        btnEditKereta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fix button/editekereta.png"))); // NOI18N
 
         listKereta.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -55,7 +55,10 @@ public class MenuKereta extends javax.swing.JPanel {
         infoKereta.setRows(5);
         ScrollPane2.setViewportView(infoKereta);
 
-        btnAttachGerbong.setText("PASANG GERBONG");
+        btnAttachGerbong.setBackground(new java.awt.Color(51, 51, 51));
+        btnAttachGerbong.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
+        btnAttachGerbong.setForeground(new java.awt.Color(255, 255, 255));
+        btnAttachGerbong.setText("P A S A N G  G E R B O N G");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -64,23 +67,17 @@ public class MenuKereta extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ScrollPane2)
+                    .addComponent(ScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                            .addComponent(ScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnAttachGerbong))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAddKereta)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDelKereta, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
+                        .addComponent(btnAddKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))))
+                        .addComponent(btnDelKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEditKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnAttachGerbong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,15 +85,15 @@ public class MenuKereta extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditKereta)
-                    .addComponent(btnDelKereta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddKereta))
+                .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDelKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAttachGerbong)
-                .addContainerGap())
+                .addComponent(btnAttachGerbong, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
     }// </editor-fold>//GEN-END:initComponents
 

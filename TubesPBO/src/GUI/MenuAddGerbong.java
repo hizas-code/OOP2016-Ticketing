@@ -25,7 +25,6 @@ public class MenuAddGerbong extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textTitle = new javax.swing.JLabel();
         lbChairCap = new javax.swing.JLabel();
         lbGerbongType = new javax.swing.JLabel();
         tfChairQty = new javax.swing.JTextField();
@@ -35,16 +34,18 @@ public class MenuAddGerbong extends javax.swing.JPanel {
         rbtnType2 = new javax.swing.JRadioButton();
         rbtnType3 = new javax.swing.JRadioButton();
 
-        textTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        textTitle.setText("Tambah Gerbong");
+        lbChairCap.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        lbChairCap.setText("JUMLAH KURSI");
 
-        lbChairCap.setText("Jumlah Kursi");
+        lbGerbongType.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        lbGerbongType.setText("TIPE GERBONG");
 
-        lbGerbongType.setText("Tipe Gerbong");
+        btnAddGerbongOK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fix button/tambahg.png"))); // NOI18N
 
-        btnAddGerbongOK.setText("Add");
-
-        btnAddGerbongCancel.setText("Back");
+        btnAddGerbongCancel.setBackground(new java.awt.Color(51, 51, 51));
+        btnAddGerbongCancel.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnAddGerbongCancel.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddGerbongCancel.setText("KEMBALI");
 
         rbtnType1.setText("Ekonomi");
 
@@ -57,52 +58,43 @@ public class MenuAddGerbong extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbChairCap)
+                    .addComponent(lbGerbongType))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(btnAddGerbongOK, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(btnAddGerbongCancel))
+                        .addComponent(rbtnType1)
+                        .addGap(10, 10, 10)
+                        .addComponent(rbtnType2))
+                    .addComponent(rbtnType3)
+                    .addComponent(tfChairQty, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbChairCap)
-                                    .addComponent(lbGerbongType))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbtnType1)
-                                    .addComponent(rbtnType2)
-                                    .addComponent(rbtnType3)
-                                    .addComponent(tfChairQty, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(btnAddGerbongOK, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAddGerbongCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(textTitle)
-                .addGap(30, 30, 30)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfChairQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbChairCap))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbGerbongType)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(rbtnType1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rbtnType2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rbtnType3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                    .addComponent(lbChairCap)
+                    .addComponent(tfChairQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddGerbongOK)
-                    .addComponent(btnAddGerbongCancel))
-                .addGap(24, 24, 24))
+                    .addComponent(lbGerbongType)
+                    .addComponent(rbtnType1)
+                    .addComponent(rbtnType2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbtnType3)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddGerbongOK, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddGerbongCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -114,7 +106,6 @@ public class MenuAddGerbong extends javax.swing.JPanel {
     private javax.swing.JRadioButton rbtnType1;
     private javax.swing.JRadioButton rbtnType2;
     private javax.swing.JRadioButton rbtnType3;
-    private javax.swing.JLabel textTitle;
     private javax.swing.JTextField tfChairQty;
     // End of variables declaration//GEN-END:variables
 

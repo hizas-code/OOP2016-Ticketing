@@ -29,6 +29,9 @@ public class MenuRute extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         infoRute = new javax.swing.JTextArea();
 
+        btnAddRute.setBackground(new java.awt.Color(51, 51, 51));
+        btnAddRute.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnAddRute.setForeground(new java.awt.Color(255, 255, 255));
         btnAddRute.setText("TAMBAH RUTE");
 
         listRute.setModel(new javax.swing.AbstractListModel<String>() {
@@ -49,9 +52,9 @@ public class MenuRute extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAddRute)
                     .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                    .addComponent(btnAddRute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -61,9 +64,9 @@ public class MenuRute extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(btnAddRute)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAddRute, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -78,5 +81,17 @@ public class MenuRute extends javax.swing.JPanel {
 
     public Object getBtnAddRute() {
         return btnAddRute;
+    }
+    public Object getListRute(){
+        return listRute;
+    }
+    public String getSelectedRute(){
+        return listRute.getSelectedValue();
+    }
+    public void setInfoRute(String s){
+        infoRute.setText(s);
+    }
+    public void setListRute(String [] s){
+        listRute.setListData(s);
     }
 }

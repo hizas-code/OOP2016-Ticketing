@@ -16,13 +16,6 @@ public class Tiket implements Serializable {
 	keretaUsed = kereta;
 	this.schedule = jadwal;
     }
-    public Tiket(String id, Rute rute, Kereta kereta, String jadwal){
-	tiketId = id;
-	price = rute.getDistance()*10000;
-	route = rute;
-	keretaUsed = kereta;
-	this.schedule = jadwal;
-    }
     public Tiket() {}
 	
     public void setTiketId(String id) { 
@@ -59,5 +52,12 @@ public class Tiket implements Serializable {
     }
     public String getSchedule() {
         return schedule; 
+    }
+    public String toString(){
+        return "ID Tiket : " + tiketId + "\n" +
+               "Harga    : " + price + "\n" +
+               "Dari     : " + route.getDeparture().getCity() + "\n" +
+               "Ke       : " + route.getDestination().getCity() + "\n" +
+               "Kereta   : " + keretaUsed.getKeretaName();
     }
 }

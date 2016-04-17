@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 
 /**
  * @author Kelompok 5 - IF3801
@@ -15,87 +16,158 @@ public class MenuAddRute extends javax.swing.JPanel {
     public void addListener(ActionListener a){
         btnAdd.addActionListener(a);
         btnBack.addActionListener(a);
+        btnCancel.addActionListener(a);
+        btnChoose1.addActionListener(a);
+        btnChoose2.addActionListener(a);
     }    
+    public void addAdapter(MouseAdapter ma){
+        listStasiun.addMouseListener(ma);
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listStasiun = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        infoStasiun = new javax.swing.JTextArea();
+        stasiunAwal = new javax.swing.JTextField();
+        stasiunAkhir = new javax.swing.JTextField();
+        btnChoose1 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnChoose2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        listStasiunLabel = new javax.swing.JButton();
+        jarakSpinner = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        btnAdd = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
-        tfRuteId = new javax.swing.JTextField();
-        tfStasiunAwal = new javax.swing.JTextField();
-        tfStasiunAkhir = new javax.swing.JTextField();
-        tfDistance = new javax.swing.JTextField();
 
-        jLabel1.setText("ID Rute");
+        listStasiun.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(listStasiun);
 
-        jLabel2.setText("ID Stasiun Awal");
+        infoStasiun.setColumns(20);
+        infoStasiun.setRows(5);
+        jScrollPane3.setViewportView(infoStasiun);
 
-        jLabel3.setText("ID Stasiun Akhir");
+        stasiunAwal.setEditable(false);
 
-        jLabel4.setText("Jarak");
+        stasiunAkhir.setEditable(false);
 
-        btnAdd.setText("Add");
+        btnChoose1.setBackground(new java.awt.Color(255, 255, 255));
+        btnChoose1.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnChoose1.setForeground(new java.awt.Color(51, 51, 51));
+        btnChoose1.setText("PILIH STASIUN AWAL");
 
-        btnBack.setText("Back");
+        btnBack.setBackground(new java.awt.Color(51, 51, 51));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("KEMBALI");
 
-        tfRuteId.setEditable(false);
+        btnCancel.setBackground(new java.awt.Color(51, 51, 51));
+        btnCancel.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancel.setText("BATAL");
+
+        btnAdd.setBackground(new java.awt.Color(255, 255, 255));
+        btnAdd.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(51, 51, 51));
+        btnAdd.setText("TAMBAH");
+
+        btnChoose2.setText("PILIH STASIUN AKHIR");
+
+        jLabel1.setText("Stasiun Awal");
+
+        jLabel2.setText("Stasiun Akhir");
+
+        listStasiunLabel.setBackground(new java.awt.Color(51, 51, 51));
+        listStasiunLabel.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        listStasiunLabel.setForeground(new java.awt.Color(255, 255, 255));
+        listStasiunLabel.setText("LIST STASIUN");
+
+        jarakSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, 1000, 5));
+
+        jLabel3.setText("Jarak");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfStasiunAwal, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                            .addComponent(tfRuteId)
-                            .addComponent(tfStasiunAkhir)
-                            .addComponent(tfDistance)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(btnAdd)
-                        .addGap(62, 62, 62)
-                        .addComponent(btnBack)))
-                .addContainerGap(148, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(24, 24, 24)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnChoose2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnChoose1, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jarakSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(stasiunAwal)
+                                            .addComponent(stasiunAkhir, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))))
+                                .addComponent(jLabel3)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(24, 24, 24)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(48, 48, 48)
+                                    .addComponent(btnCancel)
+                                    .addGap(0, 0, Short.MAX_VALUE)))))
+                    .addComponent(listStasiunLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tfRuteId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(tfStasiunAwal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfStasiunAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(tfDistance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(btnBack))
-                .addGap(43, 43, 43))
+                    .addComponent(listStasiunLabel)
+                    .addComponent(stasiunAwal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(stasiunAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jarakSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnChoose1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnChoose2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAdd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -103,14 +175,20 @@ public class MenuAddRute extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnChoose1;
+    private javax.swing.JButton btnChoose2;
+    private javax.swing.JTextArea infoStasiun;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField tfDistance;
-    private javax.swing.JTextField tfRuteId;
-    private javax.swing.JTextField tfStasiunAkhir;
-    private javax.swing.JTextField tfStasiunAwal;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSpinner jarakSpinner;
+    private javax.swing.JList<String> listStasiun;
+    private javax.swing.JButton listStasiunLabel;
+    private javax.swing.JTextField stasiunAkhir;
+    private javax.swing.JTextField stasiunAwal;
     // End of variables declaration//GEN-END:variables
     public Object getBtnAdd(){
         return btnAdd;
@@ -118,16 +196,44 @@ public class MenuAddRute extends javax.swing.JPanel {
     public Object getBtnBack(){
         return btnBack;
     }
-    public void setRuteId(String s){
-        tfRuteId.setText(s);
+    public Object getBtnCancel(){
+        return btnCancel;
+    }
+    public Object getBtnChoose1(){
+        return btnChoose1;
+    }
+    public Object getBtnChoose2(){
+        return btnChoose2;
+    }
+    public Object getListStasiun(){
+        return listStasiun;
+    }
+    public String getSelectedStasiun(){
+        return listStasiun.getSelectedValue();
     }
     public String getStasiunAwal(){
-        return tfStasiunAwal.getText();
+        return stasiunAwal.getText();
+    }
+    public int getJarak(){
+        return (int) jarakSpinner.getValue();
     }
     public String getStasiunAkhir(){
-        return tfStasiunAkhir.getText();
+        return stasiunAkhir.getText();
     }
-    public String getDistance(){
-        return tfDistance.getText();
+    public void setInfoStasiun(String s){
+        infoStasiun.setText(s);
+    }
+    public void setStasiunAwal(String s){
+        stasiunAwal.setText(s);
+    }
+    public void setStasiunAkhir(String s){
+        stasiunAkhir.setText(s);
+    }
+    public void resetText(){
+        stasiunAwal.setText("");
+        stasiunAkhir.setText("");
+    }
+    public void setListStasiun(String [] s){
+        listStasiun.setListData(s);
     }
 }
