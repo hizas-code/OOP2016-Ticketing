@@ -33,10 +33,19 @@ public class MenuTiket extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         infoTiket = new javax.swing.JTextArea();
 
+        btnAdd.setBackground(new java.awt.Color(255, 255, 255));
+        btnAdd.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(51, 51, 51));
         btnAdd.setText("TAMBAH TIKET");
 
+        btnDel.setBackground(new java.awt.Color(51, 51, 51));
+        btnDel.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnDel.setForeground(new java.awt.Color(255, 255, 255));
         btnDel.setText("HAPUS TIKET");
 
+        btnEdit.setBackground(new java.awt.Color(255, 255, 255));
+        btnEdit.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnEdit.setForeground(new java.awt.Color(51, 51, 51));
         btnEdit.setText("EDIT TIKET");
 
         listTiket.setModel(new javax.swing.AbstractListModel<String>() {
@@ -46,6 +55,7 @@ public class MenuTiket extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(listTiket);
 
+        infoTiket.setEditable(false);
         infoTiket.setColumns(20);
         infoTiket.setRows(5);
         jScrollPane2.setViewportView(infoTiket);
@@ -55,17 +65,17 @@ public class MenuTiket extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAdd)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,13 +83,13 @@ public class MenuTiket extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnDel)
                     .addComponent(btnEdit))
-                .addGap(21, 21, 21))
+                .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -99,7 +109,7 @@ public class MenuTiket extends javax.swing.JPanel {
     public Object getBtnDelTiket() {
         return btnDel;
     }
-    public Object getBtnEditTiket() {
+    public Object getBtnEditTiket(){
         return btnEdit;
     }
     public Object getListTiket(){

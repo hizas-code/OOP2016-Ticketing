@@ -54,10 +54,11 @@ public class Tiket implements Serializable {
         return schedule; 
     }
     public String toString(){
-        return "ID Tiket : " + tiketId + "\n" +
-               "Harga    : " + price + "\n" +
-               "Dari     : " + route.getDeparture().getCity() + "\n" +
-               "Ke       : " + route.getDestination().getCity() + "\n" +
-               "Kereta   : " + keretaUsed.getKeretaName();
+        return "ID Tiket " + tiketId + "\n" +
+               "Harga Rp. " + price + "\n" +
+               "Jadwal " + schedule + "\n" +
+               "Dari " + route.getDeparture().getCity() + "\n" +
+               "Ke " + route.getDestination().getCity() + "\n" +
+               "Kereta " + keretaUsed.getKeretaName();
     }
 }

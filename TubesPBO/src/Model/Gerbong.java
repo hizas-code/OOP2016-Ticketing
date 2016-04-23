@@ -9,8 +9,8 @@ public class Gerbong implements Serializable {
     private int gerbongType;
     private boolean status;
         
-    public Gerbong(int quantity, String id, int type){
-        chairQty = quantity;
+    public Gerbong(String id, int quantity, int type){
+        chairQty = quantity + 5;
         gerbongId = id;
         gerbongType = type;
         status = false;
@@ -50,16 +50,15 @@ public class Gerbong implements Serializable {
         }
         return "";
     }
-
     public String statusToString(){
         if(status) return "Digunakan";
         else return "Tidak Digunakan";
     }
     @Override
     public String toString(){
-        return "ID Gerbong      : " + gerbongId + "\n" +
-               "Jumlah Kursi    : " + chairQty  + "\n" +
-               "Tipe Gerbong    : " + typeToString() + "\n" +
-               "Status          : " + statusToString();
+        return "ID Gerbong " + gerbongId + "\n" +
+               "Jumlah Kursi " + chairQty  + "\n" +
+               "Tipe Gerbong " + typeToString() + "\n" +
+               "Status " + statusToString();
     }
 }

@@ -43,9 +43,9 @@ public class Rute implements Serializable {
         return distance; 
     }
     public String toString(){
-        return "ID Rute         : " + ruteId + "\n" +
-               "Keberangkatan   : " + departure.getCity() + "\n" +
-               "Tujuan          : " + destination.getCity() + "\n" +
-               "Jarak           : " + distance + " KM";
+        return "ID Rute " + ruteId + "\n" +
+               "Keberangkatan " + departure.getCity() + "\n" +
+               "Tujuan " + destination.getCity() + "\n" +
+               "Jarak " + distance + " KM";
     }
 }

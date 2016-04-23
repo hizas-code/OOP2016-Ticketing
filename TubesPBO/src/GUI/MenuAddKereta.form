@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -24,10 +24,12 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tfKeretaName" min="-2" pref="130" max="-2" attributes="0"/>
-                  <Component id="tfGerbongCap" min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="keretaName" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="btnAdd" min="-2" pref="84" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="gerbongCap" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnAdd" min="-2" pref="84" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnBack" min="-2" pref="84" max="-2" attributes="0"/>
                   </Group>
@@ -42,12 +44,12 @@
               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfKeretaName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="keretaName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfGerbongCap" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="gerbongCap" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -76,9 +78,7 @@
         <Property name="text" type="java.lang.String" value="KAPASITAS GERBONG"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfKeretaName">
-    </Component>
-    <Component class="javax.swing.JTextField" name="tfGerbongCap">
+    <Component class="javax.swing.JTextField" name="keretaName">
     </Component>
     <Component class="javax.swing.JButton" name="btnAdd">
       <Properties>
@@ -99,6 +99,13 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="KEMBALI"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="gerbongCap">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="10" minimum="5" numberType="java.lang.Integer" stepSize="5" type="number"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

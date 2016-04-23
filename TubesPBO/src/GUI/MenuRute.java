@@ -29,7 +29,7 @@ public class MenuRute extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         infoRute = new javax.swing.JTextArea();
 
-        btnAddRute.setBackground(new java.awt.Color(51, 51, 51));
+        btnAddRute.setBackground(new java.awt.Color(89, 126, 170));
         btnAddRute.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
         btnAddRute.setForeground(new java.awt.Color(255, 255, 255));
         btnAddRute.setText("TAMBAH RUTE");
@@ -41,6 +41,7 @@ public class MenuRute extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(listRute);
 
+        infoRute.setEditable(false);
         infoRute.setColumns(20);
         infoRute.setRows(5);
         jScrollPane2.setViewportView(infoRute);
@@ -50,12 +51,12 @@ public class MenuRute extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                     .addComponent(btnAddRute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -65,8 +66,8 @@ public class MenuRute extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAddRute, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(btnAddRute, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

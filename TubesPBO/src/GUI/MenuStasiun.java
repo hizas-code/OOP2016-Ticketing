@@ -22,8 +22,15 @@ public class MenuStasiun extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         infoStasiun = new javax.swing.JTextArea();
 
-        btnAddStasiun.setBackground(new java.awt.Color(111, 168, 220));
-        btnAddStasiun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fix button/tambahstasiun.png"))); // NOI18N
+        btnAddStasiun.setBackground(new java.awt.Color(89, 126, 170));
+        btnAddStasiun.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnAddStasiun.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddStasiun.setText("TAMBAH STASIUN");
+        btnAddStasiun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddStasiunActionPerformed(evt);
+            }
+        });
 
         listStasiun.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -32,6 +39,7 @@ public class MenuStasiun extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(listStasiun);
 
+        infoStasiun.setEditable(false);
         infoStasiun.setColumns(20);
         infoStasiun.setRows(5);
         jScrollPane2.setViewportView(infoStasiun);
@@ -41,12 +49,12 @@ public class MenuStasiun extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
-                    .addComponent(btnAddStasiun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnAddStasiun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -54,12 +62,16 @@ public class MenuStasiun extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(btnAddStasiun)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAddStasiun, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddStasiunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStasiunActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddStasiunActionPerformed
 
     public void addListener(ActionListener e) {
         btnAddStasiun.addActionListener(e);

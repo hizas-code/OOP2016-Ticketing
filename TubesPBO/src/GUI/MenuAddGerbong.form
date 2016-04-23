@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -30,12 +30,12 @@
                       <Component id="rbtnType2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="rbtnType3" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfChairQty" min="-2" pref="48" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="btnAddGerbongOK" min="-2" pref="87" max="-2" attributes="0"/>
+                      <Component id="btnAdd" min="-2" pref="87" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnAddGerbongCancel" min="-2" pref="83" max="-2" attributes="0"/>
+                      <Component id="btnBack" min="-2" pref="83" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="chairQty" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="99" max="32767" attributes="0"/>
           </Group>
@@ -44,12 +44,12 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lbChairCap" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfChairQty" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbChairCap" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="chairQty" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbGerbongType" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="rbtnType1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -59,8 +59,8 @@
               <Component id="rbtnType3" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnAddGerbongOK" min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="btnAddGerbongCancel" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="btnAdd" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="btnBack" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="102" max="32767" attributes="0"/>
           </Group>
@@ -84,16 +84,14 @@
         <Property name="text" type="java.lang.String" value="TIPE GERBONG"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfChairQty">
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAddGerbongOK">
+    <Component class="javax.swing.JButton" name="btnAdd">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Image/fix button/tambahg.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAddGerbongCancel">
+    <Component class="javax.swing.JButton" name="btnBack">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
@@ -109,6 +107,7 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbtnType1">
       <Properties>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Ekonomi"/>
       </Properties>
     </Component>
@@ -120,6 +119,13 @@
     <Component class="javax.swing.JRadioButton" name="rbtnType3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eksekutif"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="chairQty">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="10" minimum="10" numberType="java.lang.Integer" stepSize="10" type="number"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

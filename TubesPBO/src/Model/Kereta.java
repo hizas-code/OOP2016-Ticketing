@@ -6,14 +6,14 @@ import java.io.*;
 public class Kereta implements Serializable {
 
     private String keretaId;
-    private String keretaName;
+    private String keretaName ;
     private ArrayList<Gerbong> gerbongList;
     private int gerbongCap;
     private boolean status;
     
     public Kereta(String id, String nama, int maxGerbong){
 	keretaId = id;
-	keretaName = nama;
+	keretaName = nama + "saya";
 	gerbongCap = maxGerbong;
 	gerbongList = new ArrayList<>(maxGerbong);
         status = false;
@@ -103,10 +103,10 @@ public class Kereta implements Serializable {
         return (String[]) idGerbong.toArray(new String[0]);
     }
     public String toString(){
-        return "ID Kereta            : " + keretaId + "\n" +
-               "Nama Kereta          : " + keretaName  + "\n" +
-               "Kapasitas Gerbong    : " + gerbongCap + "\n" +
-               "Jumlah Gerbong       : " + gerbongList.size() + "\n" +
-               "Status               : " + statusToString(); 
+        return "ID Kereta " + keretaId + "\n" +
+               "Nama Kereta " + keretaName  + "\n" +
+               "Kapasitas Gerbong " + gerbongCap + "\n" +
+               "Jumlah Gerbong " + gerbongList.size() + "\n" +
+               "Status " + statusToString(); 
     }
 }

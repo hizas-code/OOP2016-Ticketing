@@ -15,6 +15,9 @@ public class MenuEditGerbong extends javax.swing.JPanel {
     public void addListener(ActionListener a){
         btnBack.addActionListener(a);
         btnEdit.addActionListener(a);
+        rbtnType1.addActionListener(a);
+        rbtnType2.addActionListener(a);
+        rbtnType3.addActionListener(a);
     }
     
     @SuppressWarnings("unchecked")
@@ -27,16 +30,18 @@ public class MenuEditGerbong extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         ScrollPane = new javax.swing.JScrollPane();
         taInfoGerbong = new javax.swing.JTextArea();
-        tfChairQty = new javax.swing.JTextField();
         rbtnType1 = new javax.swing.JRadioButton();
         rbtnType2 = new javax.swing.JRadioButton();
         rbtnType3 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        chairQty = new javax.swing.JSpinner();
 
-        jLabel3.setText("Jumlah Kursi");
+        jLabel3.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        jLabel3.setText("JUMLAH KURSI");
 
-        jLabel4.setText("Tipe Gerbong");
+        jLabel4.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        jLabel4.setText("TIPE GERBONG");
 
         btnEdit.setBackground(new java.awt.Color(255, 255, 255));
         btnEdit.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
@@ -48,10 +53,12 @@ public class MenuEditGerbong extends javax.swing.JPanel {
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("KEMBALI");
 
+        taInfoGerbong.setEditable(false);
         taInfoGerbong.setColumns(20);
         taInfoGerbong.setRows(5);
         ScrollPane.setViewportView(taInfoGerbong);
 
+        rbtnType1.setSelected(true);
         rbtnType1.setText("Ekonomi");
 
         rbtnType2.setText("Bisnis");
@@ -67,6 +74,8 @@ public class MenuEditGerbong extends javax.swing.JPanel {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("INPUT DATA BARU");
 
+        chairQty.setModel(new javax.swing.SpinnerNumberModel(10, 10, null, 10));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,58 +83,62 @@ public class MenuEditGerbong extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(283, 283, 283)
-                        .addComponent(tfChairQty, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbtnType2)
-                                    .addComponent(rbtnType1)
-                                    .addComponent(rbtnType3)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(80, 80, 80))
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(14, 14, 14)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(rbtnType2)
+                                        .addComponent(rbtnType1)
+                                        .addComponent(rbtnType3)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(chairQty))))))
+                .addGap(102, 102, 102))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 10, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(tfChairQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(rbtnType1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbtnType2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbtnType3)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnEdit))
-                .addGap(110, 110, 110))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(chairQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(rbtnType1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbtnType2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbtnType3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnEdit)
+                                .addComponent(btnBack))
+                            .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -134,6 +147,7 @@ public class MenuEditGerbong extends javax.swing.JPanel {
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JSpinner chairQty;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel3;
@@ -142,7 +156,6 @@ public class MenuEditGerbong extends javax.swing.JPanel {
     private javax.swing.JRadioButton rbtnType2;
     private javax.swing.JRadioButton rbtnType3;
     private javax.swing.JTextArea taInfoGerbong;
-    private javax.swing.JTextField tfChairQty;
     // End of variables declaration//GEN-END:variables
 
     public Object getBtnBack(){
@@ -160,11 +173,11 @@ public class MenuEditGerbong extends javax.swing.JPanel {
     public Object getRbtnType3(){
         return rbtnType3;
     }
-    public String getChairQty(){
-        return tfChairQty.getText();
+    public Object getSpinnerChairQty(){
+        return chairQty;
     }
-    public JTextField getTfChairQty(){
-        return tfChairQty;
+    public int getChairQty(){
+        return (int) chairQty.getValue();
     }
     public void setInfoGerbong(String s){
         taInfoGerbong.setText(s);      
@@ -183,5 +196,28 @@ public class MenuEditGerbong extends javax.swing.JPanel {
         else if(rbtnType2.isSelected()) return 2;
         else if(rbtnType3.isSelected()) return 3;
         else return 0;
+    }
+    public void resetOtherType(Object O){
+        if(O.equals(rbtnType1)) {
+            rbtnType1.setSelected(true);
+            rbtnType2.setSelected(false);
+            rbtnType3.setSelected(false);
+        }
+        if(O.equals(rbtnType2)) {
+            rbtnType1.setSelected(false);
+            rbtnType2.setSelected(true);
+            rbtnType3.setSelected(false);
+        }
+        if(O.equals(rbtnType3)) {
+            rbtnType1.setSelected(false);
+            rbtnType2.setSelected(false);
+            rbtnType3.setSelected(true);
+        }
+    }
+    public void reset(){
+        chairQty.setValue(10);
+        rbtnType1.setSelected(true);
+        rbtnType2.setSelected(false);
+        rbtnType3.setSelected(false);
     }
 }

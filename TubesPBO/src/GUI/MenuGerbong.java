@@ -36,13 +36,22 @@ public class MenuGerbong extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(221, 221, 221));
 
-        btnAddGerbong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fix button/tambahg.png"))); // NOI18N
+        btnAddGerbong.setBackground(new java.awt.Color(255, 255, 255));
+        btnAddGerbong.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnAddGerbong.setForeground(new java.awt.Color(51, 51, 51));
+        btnAddGerbong.setText("TAMBAH");
 
-        btnDelGerbong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fix button/hapus.png"))); // NOI18N
+        btnDelGerbong.setBackground(new java.awt.Color(51, 51, 51));
+        btnDelGerbong.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnDelGerbong.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelGerbong.setText("HAPUS");
         btnDelGerbong.setMaximumSize(new java.awt.Dimension(125, 23));
         btnDelGerbong.setPreferredSize(new java.awt.Dimension(125, 23));
 
-        btnEditGerbong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fix button/edit.png"))); // NOI18N
+        btnEditGerbong.setBackground(new java.awt.Color(255, 255, 255));
+        btnEditGerbong.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnEditGerbong.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditGerbong.setText("EDIT");
         btnEditGerbong.setMaximumSize(new java.awt.Dimension(125, 23));
         btnEditGerbong.setPreferredSize(new java.awt.Dimension(125, 23));
 
@@ -67,18 +76,18 @@ public class MenuGerbong extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ScrollPane1)
+                    .addComponent(ScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAddGerbong, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDelGerbong, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEditGerbong, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ScrollPane1)
-                    .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addComponent(btnEditGerbong, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDelGerbong, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,13 +95,14 @@ public class MenuGerbong extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAddGerbong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelGerbong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditGerbong, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEditGerbong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDelGerbong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAddGerbong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -1,16 +1,16 @@
 package Controller;
 
-import Model.Application;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import GUI.*;
 import Model.*;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
+import javax.xml.bind.DatatypeConverter;
 
 public class Controller extends MouseAdapter implements ActionListener {
 
@@ -24,7 +24,6 @@ public class Controller extends MouseAdapter implements ActionListener {
     private Gerbong gerbongAttach = null;
     private Kereta kereta = null;
     private Stasiun stasiun = null;
-    private String stasiunChoosed = null;
     private Rute rute = null;
     private Tiket tiket = null;
     
@@ -43,6 +42,7 @@ public class Controller extends MouseAdapter implements ActionListener {
     private MenuAddRute menuAddRute;   
     private MenuAddTiket menuAddTiket;
     private MenuEditTiket menuEditTiket;
+    private SearchTiket menuSearchTiket;
     
     public Controller(Application model){
         this.model = model;
@@ -63,6 +63,7 @@ public class Controller extends MouseAdapter implements ActionListener {
         menuTiket = new MenuTiket();            //Tiket
         menuAddTiket = new MenuAddTiket();
         menuEditTiket = new MenuEditTiket();
+        menuSearchTiket = new SearchTiket();
         
         menuGerbong.addListener(this);          //Gerbong
         menuAddGerbong.addListener(this);
@@ -77,6 +78,8 @@ public class Controller extends MouseAdapter implements ActionListener {
         menuAddRute.addListener(this); 
         menuTiket.addListener(this);            //Tiket
         menuAddTiket.addListener(this);
+        menuEditTiket.addListener(this);
+        menuSearchTiket.addListener(this);
         
         menuGerbong.addAdapter(this);
         menuKereta.addAdapter(this);
@@ -86,6 +89,8 @@ public class Controller extends MouseAdapter implements ActionListener {
         menuPasangGerbong.addAdapter(this);
         menuTiket.addAdapter(this);
         menuAddTiket.addAdapter(this);
+        menuEditTiket.addAdapter(this);
+        menuSearchTiket.addAdapter(this);
         
         mainPanel = view.getMainPanel();
         mainPanel.add(menuGerbong,"menuGerbong");           //Gerbong  
@@ -102,24 +107,29 @@ public class Controller extends MouseAdapter implements ActionListener {
         mainPanel.add(menuTiket,"menuTiket");               //Tiket
         mainPanel.add(menuAddTiket,"menuAddTiket");
         mainPanel.add(menuEditTiket,"menuEditTiket");
+        mainPanel.add(menuSearchTiket,"menuSearchTiket");
         
         currentView = "menuGerbong";
         view.getCardLayout().show(mainPanel,currentView);
         view.setVisible(true);
         view.addListener(this);
-        
+        view.setTitle("Tricking (Train Ticketing)");
         menuGerbong.setListGerbong(model.getGerbongList());
     }
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-        Object source = (Object) ae.getSource();
-        if(source.equals(view.getBtnExit())){
-            model.saveData(model);
-            System.exit(0);
+        Object source = (Object) ae.getSource(); //Mencari Sumber dari Tombol yang ditekan
+/*Exit*/if(source.equals(view.getBtnExit())){
+            int answer = JOptionPane.showConfirmDialog(mainPanel, "Yakin ingin keluar ?");
+            if(answer == 0){ //Jika Tekan Tombol Yes
+                model.saveData(model);
+                System.exit(0); //Exit Program
+            }
+            //Selain Itu Tidak ke Close
         }
-        //Main Menu
-        if(currentView.equals("menuGerbong") || currentView.equals("menuKereta") || currentView.equals("menuStasiun") || currentView.equals("menuRute") || currentView.equals("menuTiket")) {
+        //Main
+/*MM*/  if(currentView.equals("menuGerbong") || currentView.equals("menuKereta") || currentView.equals("menuStasiun") || currentView.equals("menuRute") || currentView.equals("menuTiket") || currentView.equals("menuSearchTiket")) {
             if(source.equals(view.getBtnGerbong())){
                 gerbong = null;
                 menuGerbong.setListGerbong(model.getGerbongList());
@@ -150,8 +160,14 @@ public class Controller extends MouseAdapter implements ActionListener {
                 currentView = "menuTiket";
                 view.getCardLayout().show(mainPanel, currentView);
             }
+            if(source.equals(view.getBtnSearch())){
+                tiket = null;
+                menuSearchTiket.setBox1(model.getListKota());
+                menuSearchTiket.setBox2(model.getListKota());
+                currentView = "menuSearchTiket";
+                view.getCardLayout().show(mainPanel, currentView);
+            }
         }
-        //Menu Gerbong
         if(currentView.equals("menuGerbong")){            
             if(source.equals(menuGerbong.getBtnAddGerbong())){
                 currentView = "menuAddGerbong";
@@ -163,7 +179,7 @@ public class Controller extends MouseAdapter implements ActionListener {
                 else if(gerbong.getStatus())
                     JOptionPane.showMessageDialog(menuGerbong, "Gerbong yang sedang digunakan tidak dapat dihapus!");
                 else {
-                    int answer = JOptionPane.showConfirmDialog(menuGerbong, "Yakin Ingin menghapus Gerbong dengan ID " + gerbong.getGerbongId() + " ?");
+                    int answer = JOptionPane.showConfirmDialog(menuGerbong, "Hapus gerbong dengan ID " + gerbong.getGerbongId() + " ?");
                     if(answer == 0){
                         model.getDaftarGerbong().remove(gerbong);
                         menuGerbong.setListGerbong(model.getGerbongList());
@@ -238,6 +254,8 @@ public class Controller extends MouseAdapter implements ActionListener {
         }
         if(currentView.equals("menuTiket")){
             if(source.equals(menuTiket.getBtnAddTiket())){
+                menuAddTiket.setListKereta(model.getKeretaList());
+                menuAddTiket.setListRute(model.getRuteList());
                 currentView = "menuAddTiket";
                 view.getCardLayout().show(mainPanel, currentView);
             }
@@ -250,6 +268,7 @@ public class Controller extends MouseAdapter implements ActionListener {
                     if(answer == 0){
                         model.getDaftarTiket().remove(tiket);
                         menuTiket.setListTiket(model.getTiketList());
+                        tiket.getKereta().setStatus(false);
                         tiket = null;
                         menuTiket.setInfoTiket("");
                     }
@@ -260,139 +279,107 @@ public class Controller extends MouseAdapter implements ActionListener {
                     JOptionPane.showMessageDialog(menuTiket, "Pilih tiket yang ingin diedit!");
                 }
                 else {
+                    kereta = tiket.getKereta();
+                    rute = tiket.getRute();
+                    menuEditTiket.setListKereta(model.getKeretaList());
+                    menuEditTiket.setListRute(model.getRuteList());
+                    menuEditTiket.setInfoKereta(tiket.getKereta().toString());
+                    menuEditTiket.setInfoRute(tiket.getRute().toString());
+                    menuEditTiket.setHarga(tiket.getPrice());
                     currentView = "menuEditTiket";
                     view.getCardLayout().show(mainPanel, currentView);
                 }
             }
         }
-        //Sub-Menu
+        if(currentView.equals("menuSearchTiket")){
+            if(source.equals(menuSearchTiket.getBtnSearch())){
+                String kota1 = menuSearchTiket.getCity1();
+                String kota2 = menuSearchTiket.getCit2();
+                System.out.println(kota1);
+                System.out.println(kota2);
+                menuSearchTiket.setListTiket(model.getListTiketByKota(kota1,kota2));
+            }
+        }
+
         if(currentView.equals("menuAddGerbong")){
-            if(source.equals(menuAddGerbong.getRbtnType1())){
-                menuAddGerbong.setFalseType2();
-                menuAddGerbong.setFalseType3();
+            if(source.equals(menuAddGerbong.getRbtnType1()) || source.equals(menuAddGerbong.getRbtnType2()) || source.equals(menuAddGerbong.getRbtnType3()))
+                menuAddGerbong.resetOtherType(source);
+            if(source.equals(menuAddGerbong.getBtnAdd())){
+                String id = model.generateIDGerbong(menuAddGerbong.getGerbongType());
+                int answer = JOptionPane.showConfirmDialog(menuAddGerbong,"ID Gerbong = " + id + ", Tambahkan Gerbong ?");
+                if(answer == 0){
+                    model.addGerbong(new Gerbong(id,menuAddGerbong.getValueChairQty(),menuAddGerbong.getGerbongType()));
+                    menuGerbong.setListGerbong(model.getGerbongList());
+                    currentView = "menuGerbong";
+                    view.getCardLayout().show(mainPanel, currentView);
+                }
             }
-            if(source.equals(menuAddGerbong.getRbtnType2())){
-                menuAddGerbong.setFalseType1();
-                menuAddGerbong.setFalseType3();
-            }
-            if(source.equals(menuAddGerbong.getRbtnType3())){
-                menuAddGerbong.setFalseType1();
-                menuAddGerbong.setFalseType2();
-            }
-            if(source.equals(menuAddGerbong.getBtnAddGerbongOK())){
-                int tryAdd = model.tryGerbong(menuAddGerbong.getTextChairQty(),menuAddGerbong.getGerbongType());
-                switch(tryAdd){
-                    case -1 : 
-                        JOptionPane.showMessageDialog(menuEditGerbong, "Inputkan Jumlah Kursi dengan angka!");
-                        break;
-                    case -2 :
-                        JOptionPane.showMessageDialog(menuEditGerbong, "Pilih Tipe Gerbong!");
-                        break;
-                    case 1  :
-                        String id = model.generateIDGerbong(menuAddGerbong.getGerbongType());
-                        model.addGerbong(new Gerbong(Integer.parseInt(menuAddGerbong.getTextChairQty()),id,menuAddGerbong.getGerbongType()));
-                        JOptionPane.showMessageDialog(menuAddGerbong, "Gerbong berhasil dibuat dengan ID : " + id);
-                        menuGerbong.setListGerbong(model.getGerbongList());
-                    }
-            }
-            if(source.equals(menuAddGerbong.getBtnAddGerbongCancel())){
-                menuAddGerbong.setFalseType1();
-                menuAddGerbong.setFalseType2();
-                menuAddGerbong.setFalseType3();
-                menuAddGerbong.getTfChairQty().setText("");
+            if(source.equals(menuAddGerbong.getBtnBack())){
+                menuAddGerbong.reset();
                 currentView = "menuGerbong";
                 view.getCardLayout().show(mainPanel, currentView);
             }           
         }
         if(currentView.equals("menuEditGerbong")){
             menuEditGerbong.setInfoGerbong(gerbong.toString());
+            if(source.equals(menuEditGerbong.getRbtnType1()) || source.equals(menuEditGerbong.getRbtnType2()) || source.equals(menuEditGerbong.getRbtnType3()))
+                menuEditGerbong.resetOtherType(source);
             if(source.equals(menuEditGerbong.getBtnBack())){
-                menuEditGerbong.getTfChairQty().setText("");
-                menuEditGerbong.setFalseType1();
-                menuEditGerbong.setFalseType2();
-                menuEditGerbong.setFalseType3();
+                menuEditGerbong.reset();
                 currentView = "menuGerbong";
                 view.getCardLayout().show(mainPanel, currentView);
             }
-            if(source.equals(menuEditGerbong.getRbtnType1())){
-                menuEditGerbong.setFalseType2();
-                menuEditGerbong.setFalseType3();
-            }
-            if(source.equals(menuEditGerbong.getRbtnType2())){
-                menuEditGerbong.setFalseType1();
-                menuEditGerbong.setFalseType3();
-            }
-            if(source.equals(menuEditGerbong.getRbtnType3())){
-                menuEditGerbong.setFalseType2();
-                menuEditGerbong.setFalseType3();
-            }
             if(source.equals(menuEditGerbong.getBtnEdit())){
-                int tryEdit = model.tryGerbong(menuEditGerbong.getChairQty(),menuEditGerbong.getGerbongType());
-                switch(tryEdit){
-                    case -1 : 
-                        JOptionPane.showMessageDialog(menuEditGerbong, "Inputkan Jumlah Kursi dengan angka!");
-                        break;
-                    case -2 :
-                        JOptionPane.showMessageDialog(menuEditGerbong, "Pilih Tipe Gerbong!");
-                        break;
-                    case 1  :     
-                        String id = model.generateIDGerbong(menuEditGerbong.getGerbongType());
-                        int answer = JOptionPane.showConfirmDialog(menuEditGerbong, "Gerbong akan diedit dan memiliki ID baru dengan ID : " + id);
-                        if(answer == 0){
-                            gerbong.setChairQty(Integer.parseInt(menuEditGerbong.getChairQty()));
-                            gerbong.setGerbongType(menuEditGerbong.getGerbongType());
-                            gerbong.setGerbongId(id);
-                            menuGerbong.setListGerbong(model.getGerbongList());
-                            menuEditGerbong.setFalseType1();
-                            menuEditGerbong.setFalseType2();
-                            menuEditGerbong.setFalseType3();
-                            currentView = "menuGerbong";
-                            view.getCardLayout().show(mainPanel, currentView);
-                        }
-                        break;
-                }
+                String id = model.generateIDGerbong(menuEditGerbong.getGerbongType());
+                int answer = JOptionPane.showConfirmDialog(menuAddGerbong,"Gerbong diedit, ID akan berubah menjadi " + id + ", edit Gerbong ?");
+                if(answer == 0){
+                    gerbong.setGerbongId(id);
+                    gerbong.setChairQty(menuEditGerbong.getChairQty());
+                    gerbong.setGerbongType(menuEditGerbong.getGerbongType());
+                    menuEditGerbong.reset();
+                    menuGerbong.setListGerbong(model.getGerbongList());
+                    menuGerbong.setInfoGerbong("");
+                    currentView = "menuGerbong";
+                    view.getCardLayout().show(mainPanel, currentView);
+                } 
             }
         }
         if(currentView.equals("menuAddKereta")){
             if(source.equals(menuAddKereta.getBtnAdd())){
-                int tryAdd = model.tryKereta(menuAddKereta.getGerbongCap());
-                if(tryAdd == -1){
-                    JOptionPane.showMessageDialog(menuAddKereta, "Input Format not accepted!");
-                }
-                else {
-                    String id = model.generateIDKereta();
-                    int answer = JOptionPane.showConfirmDialog(menuAddKereta, "Tambahkan Kereta dengan ID : " + id + " ?");
-                    if(answer == 0){
-                        model.addKereta(new Kereta(id,menuAddKereta.getKeretaName(), Integer.parseInt(menuAddKereta.getGerbongCap())));
-                    }
+                String id = model.generateIDKereta();
+                int answer = JOptionPane.showConfirmDialog(menuAddKereta, "Tambahkan Kereta dengan ID : " + id + " ?");
+                if(answer == 0){
+                    model.addKereta(new Kereta(id,menuAddKereta.getKeretaName(), menuAddKereta.getGerbongCap()));
+                    currentView = "menuKereta";
+                    view.getCardLayout().show(mainPanel, currentView);
+                    menuKereta.setListKereta(model.getKeretaList());
                 }
             }
             if(source.equals(menuAddKereta.getBtnBack())){
-                menuAddKereta.resetGerbongCap();
-                menuAddKereta.resetKeretaName();
+                menuAddKereta.reset();
                 currentView = "menuKereta";
                 view.getCardLayout().show(mainPanel, currentView);
                 menuKereta.setListKereta(model.getKeretaList());
             }
+            
         }
         if(currentView.equals("menuEditKereta")){
             menuEditKereta.setInfoKereta(kereta.toString());
             if(source.equals(menuEditKereta.getBtnBack())){
-                menuEditKereta.resetTF();
+                menuEditKereta.reset();
+                kereta = null;
                 currentView = "menuKereta";
                 view.getCardLayout().show(mainPanel, currentView);
             }
             if(source.equals(menuEditKereta.getBtnEdit())){
-                int tryEdit = model.tryKereta(menuEditKereta.getGerbongCap());
-                if(tryEdit == -1){
-                    JOptionPane.showMessageDialog(menuEditKereta, "Inputkan Angka pada Kapasitas Gerbong!");
-                }
-                else {
-                    kereta.setGerbongCap(Integer.parseInt(menuEditKereta.getGerbongCap()));
+                    kereta.setGerbongCap(menuEditKereta.getGerbongCap());
                     kereta.setKeretaName(menuEditKereta.getKeretaName());
                     JOptionPane.showMessageDialog(menuEditKereta, "Edit Kereta Berhasil!");
-                    menuEditKereta.setInfoKereta(kereta.toString());
-                }
+                    menuEditKereta.reset();
+                    menuEditKereta.setInfoKereta("");
+                    kereta = null;
+                    currentView = "menuKereta";
+                    view.getCardLayout().show(mainPanel, currentView);
             }
         }
         if(currentView.equals("menuPasangGerbong")){
@@ -401,6 +388,9 @@ public class Controller extends MouseAdapter implements ActionListener {
             if(source.equals(menuPasangGerbong.getBtnAttach())){
                 if(gerbongAttach == null){
                     JOptionPane.showMessageDialog(menuPasangGerbong, "Pilih Gerbong yang mau dipasang!");
+                }
+                else if (kereta.getGerbongCap() == kereta.getGerbongList().size()) {
+                    JOptionPane.showMessageDialog(menuPasangGerbong, "Kereta sudah penuh dengan Gerbong!");
                 }
                 else {
                     kereta.getGerbongList().add(gerbongAttach);
@@ -431,17 +421,16 @@ public class Controller extends MouseAdapter implements ActionListener {
         }
         if(currentView.equals("menuAddStasiun")){
             if(source.equals(menuAddStasiun.getBtnAdd())){
-                int tryAdd = model.tryStasiun(menuAddStasiun.getStasiunCity());
-                if(tryAdd == 1){
+                if(menuAddStasiun.getStasiunCity().length() < 3){
+                    JOptionPane.showMessageDialog(menuAddStasiun,"Panjang Nama kota harus lebih dari 2 Karakter!");
+                }
+                else {
                     String id = model.generateIDStasiun(menuAddStasiun.getStasiunCity());   
                     int answer = JOptionPane.showConfirmDialog(menuAddStasiun,"Tambah Stasiun dengan ID : " + id + " ?" );
                     if(answer == 0){
                         model.addStasiun(new Stasiun(menuAddStasiun.getStasiunName(),id,menuAddStasiun.getStasiunCity()));
                         menuStasiun.setListStasiun(model.getStasiunList());
                     }
-                }
-                else {
-                    JOptionPane.showMessageDialog(menuAddStasiun, "Panjang nama kota harus lebih dari 3 Huruf!");
                 }
             }
             if(source.equals(menuAddStasiun.getBtnBack())){
@@ -495,16 +484,67 @@ public class Controller extends MouseAdapter implements ActionListener {
                 else if(rute == null || kereta == null){
                     JOptionPane.showMessageDialog(menuAddTiket,"Tentukan kereta dan rute yang digunakan!");
                 }
+                else if(kereta.getGerbongList().isEmpty()){
+                    JOptionPane.showMessageDialog(menuAddTiket,"Kereta belum memiliki gerbong!");
+                }
                 else {
-                    
+                    String id = model.generateIDTiket(rute);
+                    int answer = JOptionPane.showConfirmDialog(menuAddTiket,"Tambahkan Tiket dengan ID : " + id + " ?");
+                    if(answer == 0) {
+                        model.addTiket(new Tiket(id,menuAddTiket.getHarga(),rute,kereta,menuAddTiket.getJadwal()));
+                        menuTiket.setListTiket(model.getTiketList());
+                        kereta.setStatus(true);
+                        kereta = null;
+                        rute = null;
+                        currentView = "menuTiket";
+                        view.getCardLayout().show(mainPanel, currentView);
+                    }
                 }
             }
             if(source.equals(menuAddTiket.getBtnBack())){
-                
+                kereta = null;
+                rute = null;
+                currentView = "menuTiket";
+                view.getCardLayout().show(mainPanel, currentView);
             }
         }
         if(currentView.equals("menuEditTiket")){
-            
+            if(source.equals(menuEditTiket.getBtnEdit())){
+                if(menuEditTiket.getHarga() == 0){
+                    JOptionPane.showMessageDialog(menuEditTiket,"Tentukan harga terlebih dahulu!");
+                }
+                else if(rute == null || kereta == null){
+                    JOptionPane.showMessageDialog(menuEditTiket,"Tentukan kereta dan rute yang digunakan!");
+                }
+                else if(kereta.getGerbongList().isEmpty()){
+                    JOptionPane.showMessageDialog(menuEditTiket,"Kereta belum memiliki gerbong!");
+                }
+                else {
+                    String id = model.generateIDTiket(rute);
+                    int answer = JOptionPane.showConfirmDialog(menuEditTiket,"Tiket akan memiliki ID baru dengan ID : " + id + ", Edit ?");
+                    if(answer == 0) {
+                        tiket.getKereta().setStatus(false);
+                        tiket.setRoute(rute);
+                        tiket.setKeretaUsed(kereta);
+                        tiket.setSchedule(menuEditTiket.getJadwal());
+                        tiket.setPrice(menuEditTiket.getHarga());
+                        tiket.setTiketId(id);
+                        kereta.setStatus(true);
+                        kereta = null;
+                        rute = null;
+                        menuTiket.setListTiket(model.getTiketList());
+                        currentView = "menuTiket";
+                        view.getCardLayout().show(mainPanel, currentView);
+                    }
+                }
+            }
+            if(source.equals(menuEditTiket.getBtnBack())){
+                kereta = null;
+                rute = null;
+                menuTiket.setListTiket(model.getTiketList());
+                currentView = "menuTiket";
+                view.getCardLayout().show(mainPanel, currentView);
+            }
         }
     }
     
@@ -513,54 +553,94 @@ public class Controller extends MouseAdapter implements ActionListener {
         Object source = e.getSource();
         if (source.equals(menuGerbong.getListGerbong())) {
             String idGerbong = menuGerbong.getSelectedGerbong();
-            gerbong = model.getGerbongByID(idGerbong);
-            menuGerbong.setInfoGerbong(gerbong.toString());
+            if(idGerbong != null){
+                gerbong = model.getGerbongByID(idGerbong);
+                menuGerbong.setInfoGerbong(gerbong.toString());
+            }
         }
         if(source.equals(menuKereta.getListKereta())){
             String idKereta = menuKereta.getSelectedKereta();
-            kereta = model.getKeretaByID(idKereta);
-            menuKereta.setInfoKereta(kereta.toString());
+            if(idKereta != null){
+                kereta = model.getKeretaByID(idKereta);
+                menuKereta.setInfoKereta(kereta.toString());
+            }
         }
         if(source.equals(menuPasangGerbong.getListGerbongFree())){
             String idGerbong = menuPasangGerbong.getSelectedGerbongFree();
-            gerbongAttach = model.getGerbongByID(idGerbong);
-            menuPasangGerbong.setInfoGerbong(gerbongAttach.toString());
+            if(idGerbong != null) {
+                gerbongAttach = model.getGerbongByID(idGerbong);
+                menuPasangGerbong.setInfoGerbong(gerbongAttach.toString());
+            }
         }
         if(source.equals(menuPasangGerbong.getListGerbongUsed())){
             String idGerbong = menuPasangGerbong.getSelectedGerbongUsed();
-            gerbongRelease = model.getGerbongByID(idGerbong);
-            menuPasangGerbong.setInfoGerbong(gerbongRelease.toString());
+            if(idGerbong != null){
+                gerbongRelease = model.getGerbongByID(idGerbong);
+                menuPasangGerbong.setInfoGerbong(gerbongRelease.toString());
+            }
         }
         if(source.equals(menuStasiun.getListStasiun())){
             String idStasiun = menuStasiun.getSelectedStasiun();
-            stasiun = model.getStasiunByID(idStasiun);
-            menuStasiun.setInfoStasiun(stasiun.toString());
+            if(idStasiun != null){
+                stasiun = model.getStasiunByID(idStasiun);
+                menuStasiun.setInfoStasiun(stasiun.toString());
+            }
         }
         if(source.equals(menuRute.getListRute())){
-            System.out.println("asd");
             String idRute = menuRute.getSelectedRute();
-            rute = model.getRuteByID(idRute);
-            menuRute.setInfoRute(rute.toString());
+            if(idRute != null){
+                rute = model.getRuteByID(idRute);
+                menuRute.setInfoRute(rute.toString());
+            }
         }
         if(source.equals(menuAddRute.getListStasiun())){
             String idStasiun = menuAddRute.getSelectedStasiun();
-            stasiun = model.getStasiunByID(idStasiun);
-            menuAddRute.setInfoStasiun(stasiun.toString());
+            if(idStasiun != null){
+                stasiun = model.getStasiunByID(idStasiun);
+                menuAddRute.setInfoStasiun(stasiun.toString());
+            }
         }
         if(source.equals(menuTiket.getListTiket())){
             String idTiket = menuTiket.getSelectedTiket();
-            tiket = model.getTiketByID(idTiket);
-            menuTiket.setInfoTiket(tiket.toString());
+            if(idTiket != null) {
+                tiket = model.getTiketByID(idTiket);
+                menuTiket.setInfoTiket(tiket.toString());
+            }
         }
         if(source.equals(menuAddTiket.getListKereta())){
             String idKereta = menuAddTiket.getSelectedKereta();
-            kereta = model.getKeretaByID(idKereta);
-            menuAddTiket.setInfoKereta(kereta.toString());
+            if(idKereta != null) {
+                kereta = model.getKeretaByID(idKereta);
+                menuAddTiket.setInfoKereta(kereta.toString());
+            }
         }
         if(source.equals(menuAddTiket.getListRute())){
             String idRute = menuAddTiket.getSelectedRute();
-            rute = model.getRuteByID(idRute);
-            menuAddTiket.setInfoRute(rute.toString());
+            if(idRute != null){
+                rute = model.getRuteByID(idRute);
+                menuAddTiket.setInfoRute(rute.toString());
+            }
+        }
+        if(source.equals(menuEditTiket.getListRute())){
+            String idRute = menuEditTiket.getSelectedRute();
+            if(idRute != null){
+                rute = model.getRuteByID(idRute);
+                menuEditTiket.setInfoRute(rute.toString());
+            }
+        }
+        if(source.equals(menuEditTiket.getListKereta())){
+            String idKereta = menuEditTiket.getSelectedKereta();
+            if(idKereta != null){
+                kereta = model.getKeretaByID(idKereta);
+                menuEditTiket.setInfoKereta(kereta.toString());
+            }
+        }
+        if(source.equals(menuSearchTiket.getListTiket())){
+            String idTiket = menuSearchTiket.getSelectedTiket();
+            if(idTiket != null){
+                tiket = model.getTiketByID(idTiket);
+                menuSearchTiket.setInfoTiket(tiket.toString());
+            }
         }
     }
 }

@@ -34,8 +34,8 @@ public class Stasiun implements Serializable {
         return city; 
     }
     public String toString(){
-        return "ID Kereta    : " + stasiunId + "\n" +
-               "Nama Kereta  : " + stasiunName + "\n" +
-               "Kota         : " + city;
+        return "ID Stasiun " + stasiunId + "\n" +
+               "Nama Stasiun " + stasiunName + "\n" +
+               "Kota " + city;
     }
 }

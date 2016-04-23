@@ -294,7 +294,7 @@ public class Console {
             System.out.print("Jumlah Kursi : "); strKursi = scanString.nextLine();
             kursi = Integer.parseInt(strKursi);
             id = app.generateIDGerbong(tipe);
-            app.addGerbong(new Gerbong(kursi, id, tipe));
+            app.addGerbong(new Gerbong(id,kursi, tipe));
             System.out.println("Gerbong dengan ID " + id + " berhasil ditambahkan!");
         }
         catch (NumberFormatException e) {

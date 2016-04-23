@@ -14,6 +14,7 @@ public class MenuAddKereta extends javax.swing.JPanel {
     public void addListener(ActionListener al){
         btnAdd.addActionListener(al);
         btnBack.addActionListener(al);
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -22,10 +23,10 @@ public class MenuAddKereta extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        tfKeretaName = new javax.swing.JTextField();
-        tfGerbongCap = new javax.swing.JTextField();
+        keretaName = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        gerbongCap = new javax.swing.JSpinner();
 
         jLabel2.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
         jLabel2.setText("NAMA KERETA");
@@ -40,6 +41,8 @@ public class MenuAddKereta extends javax.swing.JPanel {
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("KEMBALI");
 
+        gerbongCap.setModel(new javax.swing.SpinnerNumberModel(10, 5, null, 5));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -51,10 +54,11 @@ public class MenuAddKereta extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfKeretaName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfGerbongCap, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(keretaName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(gerbongCap, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(82, Short.MAX_VALUE))
@@ -65,11 +69,11 @@ public class MenuAddKereta extends javax.swing.JPanel {
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(tfKeretaName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(keretaName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfGerbongCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(gerbongCap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -82,10 +86,10 @@ public class MenuAddKereta extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JSpinner gerbongCap;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField tfGerbongCap;
-    private javax.swing.JTextField tfKeretaName;
+    private javax.swing.JTextField keretaName;
     // End of variables declaration//GEN-END:variables
     public Object getBtnAdd(){
         return btnAdd;
@@ -93,16 +97,17 @@ public class MenuAddKereta extends javax.swing.JPanel {
     public Object getBtnBack(){
         return btnBack;
     }
-    public String getGerbongCap(){
-        return tfGerbongCap.getText();
+    public Object getSpinnerGerbongCap(){
+        return gerbongCap;
+    }
+    public int getGerbongCap(){
+        return (int) gerbongCap.getValue();
     }
     public String getKeretaName(){
-        return tfKeretaName.getText();
+        return keretaName.getText();
     }
-    public void resetKeretaName(){
-        tfKeretaName.setText("");
-    }
-    public void resetGerbongCap(){
-        tfGerbongCap.setText("");
+    public void reset(){
+        keretaName.setText("");
+        gerbongCap.setValue(5);
     }
 }

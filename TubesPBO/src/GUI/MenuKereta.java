@@ -36,13 +36,22 @@ public class MenuKereta extends javax.swing.JPanel {
         infoKereta = new javax.swing.JTextArea();
         btnAttachGerbong = new javax.swing.JButton();
 
-        btnAddKereta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fix button/tambahkereta.png"))); // NOI18N
+        btnAddKereta.setBackground(new java.awt.Color(255, 255, 255));
+        btnAddKereta.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnAddKereta.setForeground(new java.awt.Color(51, 51, 51));
+        btnAddKereta.setText("TAMBAH KERETA");
 
-        btnDelKereta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fix button/hapuskereta.png"))); // NOI18N
+        btnDelKereta.setBackground(new java.awt.Color(51, 51, 51));
+        btnDelKereta.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnDelKereta.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelKereta.setText("HAPUS KERETA");
         btnDelKereta.setMaximumSize(new java.awt.Dimension(115, 23));
         btnDelKereta.setPreferredSize(new java.awt.Dimension(115, 23));
 
-        btnEditKereta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/fix button/editekereta.png"))); // NOI18N
+        btnEditKereta.setBackground(new java.awt.Color(255, 255, 255));
+        btnEditKereta.setFont(new java.awt.Font("Calibri Light", 1, 11)); // NOI18N
+        btnEditKereta.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditKereta.setText("EDIT KERETA");
 
         listKereta.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -51,11 +60,12 @@ public class MenuKereta extends javax.swing.JPanel {
         });
         ScrollPane1.setViewportView(listKereta);
 
+        infoKereta.setEditable(false);
         infoKereta.setColumns(20);
         infoKereta.setRows(5);
         ScrollPane2.setViewportView(infoKereta);
 
-        btnAttachGerbong.setBackground(new java.awt.Color(51, 51, 51));
+        btnAttachGerbong.setBackground(new java.awt.Color(89, 126, 170));
         btnAttachGerbong.setFont(new java.awt.Font("Calibri", 1, 11)); // NOI18N
         btnAttachGerbong.setForeground(new java.awt.Color(255, 255, 255));
         btnAttachGerbong.setText("P A S A N G  G E R B O N G");
@@ -65,19 +75,19 @@ public class MenuKereta extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ScrollPane2)
                     .addComponent(ScrollPane1)
+                    .addComponent(btnAttachGerbong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAddKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnAttachGerbong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(74, 74, 74))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAddKereta)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDelKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,15 +95,15 @@ public class MenuKereta extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(ScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDelKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditKereta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAttachGerbong, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addComponent(ScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddKereta)
+                    .addComponent(btnEditKereta)
+                    .addComponent(btnDelKereta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAttachGerbong, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
 
